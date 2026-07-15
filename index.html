@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    // Suppress benign WebSocket/HMR connection errors from showing up as unhandled rejection popups
+    window.addEventListener('unhandledrejection', (event) => {
+      const reason = event.reason;
+      if (reason && (
+        (reason.message && /websocket|ws|vite|hmr/i.test(reason.message)) ||
+        (reason.stack && /websocket|ws|vite|hmr/i.test(reason.stack))
+      )) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+    window.addEventListener('error', (event) => {
+      if (event.message && /websocket|ws|vite|hmr/i.test(event.message)) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    }, true);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocMind AI - Your Personal AI Document Assistant</title>
+  
+  <!-- Fonts: Poppins (Hero headings, clean sans) and Inter (body copy, details) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header id="navbar" class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" id="nav-logo">
+        <!-- SVG Logo: Brain fused with document -->
+
+        <div class="mobile-logo">
+      <i class="fa-solid fa-brain logo-blue-icon"></i>
+      <span>DocMind AI</span>
+    </div>
+       
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="nav-links" id="nav-links">
+        <a href="#home" class="nav-item active">Home</a>
+        <a href="#about" class="nav-item">About</a>
+        <a href="#features" class="nav-item">Features</a>
+        <a href="#technology" class="nav-item">Technology</a>
+        <a href="#contact" class="nav-item">Contact</a>
+      </nav>
+
+      <!-- Try Demo CTA in Navbar -->
+      <div class="nav-actions">
+        <button class="btn btn-demo-nav" id="nav-get-started-btn">Get Started</button>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-menu" id="mobile-menu">
+      <nav class="mobile-nav-links">
+        <a href="#home" class="mobile-nav-item">Home</a>
+        <a href="#about" class="mobile-nav-item">About</a>
+        <a href="#features" class="mobile-nav-item">Features</a>
+        <a href="#technology" class="mobile-nav-item">Technology</a>
+        <a href="#contact" class="mobile-nav-item">Contact</a>
+        <button class="btn btn-demo-mobile" id="mobile-get-started-btn">Get Started</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section (Full-screen background video) -->
+  <section id="home" class="hero-section">
+    <div class="hero-video-container">
+      <!-- Fallback background gradient & glow elements are styled via CSS for a high-end visual design if video is missing -->
+      <div class="hero-video-fallback-glow">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-orb glow-orb-3"></div>
+      </div>
+      <video autoplay muted loop playsinline class="hero-video" id="hero-video">
+        <source src="hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <!-- Deep premium transparent dark overlay for high readability -->
+    <div class="hero-overlay"></div>
+
+    <!-- Centered Hero Content -->
+    <div class="hero-content">
+      <div class="hero-badge fade-up-init">
+        <span class="badge-dot"></span> Powered by Google Gemini
+      </div>
+      <h1 class="hero-title fade-up-init">DocMind AI</h1>
+      <h2 class="hero-subtitle fade-up-init">Your Personal AI Document Assistant</h2>
+      <p class="hero-description fade-up-init">
+        Upload PDFs, DOCX, and text files. Ask questions, generate summaries, create quizzes, and instantly understand your documents with Google Gemini.
+      </p>
+      
+      <div class="hero-buttons fade-up-init">
+        <button class="btn btn-primary" id="hero-get-started-btn">Get Started</button>
+        <button class="btn btn-secondary" id="hero-demo-btn">Try Demo</button>
+      </div>
+    </div>
+
+    <!-- Animated Scroll Down Indicator -->
+    <a href="#about" class="scroll-indicator" aria-label="Scroll down to About section">
+      <span class="scroll-mouse">
+        <span class="scroll-wheel"></span>
+      </span>
+      <span class="scroll-arrow"></span>
+    </a>
+  </section>
+
+  <!-- ==========================================
+       SECTION 1: TRUSTED BY / STATS
+       ========================================== -->
+  <section id="about" class="stats-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Platform Impact</span>
+        <h2 class="section-title">Trusted by Active Minds Globally</h2>
+        <p class="section-desc">DocMind AI empowers researchers, students, and professionals to work smarter, not harder.</p>
+      </div>
+
+      <div class="stats-grid" id="stats">
+        <!-- Stat 1 -->
+        <div class="stat-card">
+          <div class="stat-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="stat-icon">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 10h8M8 14h6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-num-wrapper">
+            <span class="stat-number" data-target="10000" data-suffix="+" data-display="10,000+">0</span>
+          </div>
+          <p class="stat-label">Questions Answered</p>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="stat-card">
+          <div class="stat-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="stat-icon">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="14 2 14 8 20 8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 13H8M16 17H8M10 9H8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-num-wrapper">
+            <span class="stat-number" data-target="500" data-suffix="+" data-display="500+">0</span>
+          </div>
+          <p class="stat-label">Documents Processed</p>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="stat-card">
+          <div class="stat-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="stat-icon">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 11l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-num-wrapper">
+            <span class="stat-number" data-target="98" data-suffix="%" data-display="98%">0</span>
+          </div>
+          <p class="stat-label">Precision Accuracy</p>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="stat-card">
+          <div class="stat-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="stat-icon">
+              <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-num-wrapper">
+            <span class="stat-number" data-target="24" data-suffix="/7" data-display="24/7">24/7</span>
+          </div>
+          <p class="stat-label">AI Assistance</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 2: FEATURES (6 Features)
+       ========================================== -->
+  <section id="features" class="features-new-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Core Features</span>
+        <h2 class="section-title">Designed for Ultimate Document Intelligence</h2>
+        <p class="section-desc">Experience powerful features built entirely around Google's advanced Gemini model.</p>
+      </div>
+
+      <div class="features-grid-3">
+        <!-- Feature 1: Upload Documents -->
+        <div class="feature-new-card">
+          <div class="feature-new-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-new-icon">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="17 8 12 3 7 8" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="12" y1="3" x2="12" y2="15" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-new-title">Upload Documents</h3>
+          <p class="feature-new-desc">Upload PDF, DOCX, and TXT files securely. Our lightning-fast parsing engine processes multi-page texts in seconds, preparing them for Gemini ingestion.</p>
+        </div>
+
+        <!-- Feature 2: Ask AI -->
+        <div class="feature-new-card">
+          <div class="feature-new-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-new-icon">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 8v4m0 2h.01" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-new-title">Ask AI</h3>
+          <p class="feature-new-desc">Chat naturally with your documents using Google Gemini. Ask questions, lookup definitions, cross-reference data points, and clarify complex concepts instantly.</p>
+        </div>
+
+        <!-- Feature 3: AI Summary -->
+        <div class="feature-new-card">
+          <div class="feature-new-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-new-icon">
+              <line x1="21" y1="6" x2="3" y2="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="21" y1="12" x2="9" y2="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="21" y1="18" x2="7" y2="18" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 12h3M3 18h2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-new-title">AI Summary</h3>
+          <p class="feature-new-desc">Generate structured summaries instantly. Convert extensive research papers, long textbook chapters, or corporate reports into highly structured key takeaways.</p>
+        </div>
+
+        <!-- Feature 4: Quiz Generator -->
+        <div class="feature-new-card">
+          <div class="feature-new-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-new-icon">
+              <path d="M9 11l3 3L22 4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-new-title">Quiz Generator</h3>
+          <p class="feature-new-desc">Create interactive quizzes directly from uploaded documents. Test your comprehension, review critical terms, and supercharge study groups automatically.</p>
+        </div>
+
+        <!-- Feature 5: AI Insights -->
+        <div class="feature-new-card">
+          <div class="feature-new-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-new-icon">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-new-title">AI Insights</h3>
+          <p class="feature-new-desc">Understand deep, underlying concepts instead of reading hundreds of pages. Save hours of manual effort by letting AI highlight core paradigms.</p>
+        </div>
+
+        <!-- Feature 6: Export Reports -->
+        <div class="feature-new-card">
+          <div class="feature-new-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-new-icon">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="7 10 12 15 17 10" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="12" y1="15" x2="12" y2="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-new-title">Export Reports</h3>
+          <p class="feature-new-desc">Download AI-generated summaries and structured outputs as beautifully formatted PDF reports, perfect for sharing with colleagues or offline studying.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 3: HOW IT WORKS
+       ========================================== -->
+  <section id="how-it-works" class="timeline-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Easy Workflow</span>
+        <h2 class="section-title">Four Steps to Smart Insights</h2>
+        <p class="section-desc">Get started in seconds. No complex setups or learning curves involved.</p>
+      </div>
+
+      <div class="timeline-grid">
+        <!-- Step 1 -->
+        <div class="timeline-item">
+          <span class="timeline-step">Step 1</span>
+          <div class="timeline-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="timeline-title">Upload Document</h3>
+          <p class="timeline-desc">Drag and drop your PDF, DOCX, or text file securely into your personal workspace.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-item">
+          <span class="timeline-step">Step 2</span>
+          <div class="timeline-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="timeline-title">AI Processing</h3>
+          <p class="timeline-desc">Google Gemini deep-analyzes and structures your document's semantic layer instantly.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-item">
+          <span class="timeline-step">Step 3</span>
+          <div class="timeline-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="timeline-title">Ask Questions</h3>
+          <p class="timeline-desc">Chat naturally with your document. Interrogate paragraphs, tables, or complex policies easily.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-item">
+          <span class="timeline-step">Step 4</span>
+          <div class="timeline-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="timeline-title">Smart Yield</h3>
+          <p class="timeline-desc">Receive immediate AI summaries, interactive quizzes, structured notes, and exportable reports.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION: PRODUCT PREVIEW (Add right after How It Works)
+       ========================================== -->
+  <section id="technology" class="preview-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Product Preview</span>
+        <h2 class="section-title">See DocMind AI in Action</h2>
+        <p class="section-desc">Explore the powerful features of DocMind AI through a quick preview of the application before getting started.</p>
+      </div>
+
+      <div class="preview-grid">
+        <!-- Card 1 -->
+        <div class="preview-card">
+          <div class="browser-mockup">
+            <span class="browser-dot red"></span>
+            <span class="browser-dot yellow"></span>
+            <span class="browser-dot green"></span>
+            <div class="browser-address"></div>
+          </div>
+          <div class="preview-image-container">
+            <div class="preview-placeholder-svg">
+              <div style="text-align: center;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 50px; height: 50px; margin: 0 auto 10px auto;">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3 9h18M9 21V9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.5px;">WORKSPACE PREVIEW</div>
+              </div>
+            </div>
+            <img src="assets/dashboard-preview.png" alt="Dashboard Overview" class="preview-image" id="preview-img-dashboard" onerror="this.style.display='none'">
+          </div>
+          <div class="preview-body">
+            <h3 class="preview-title">Dashboard Overview</h3>
+            <p class="preview-desc">Manage uploaded documents, monitor AI activity, and access all document intelligence features from one centralized workspace.</p>
+            <button class="btn-preview" id="view-dashboard-btn">View Dashboard</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="preview-card">
+          <div class="browser-mockup">
+            <span class="browser-dot red"></span>
+            <span class="browser-dot yellow"></span>
+            <span class="browser-dot green"></span>
+            <div class="browser-address"></div>
+          </div>
+          <div class="preview-image-container">
+            <div class="preview-placeholder-svg">
+              <div style="text-align: center;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 50px; height: 50px; margin: 0 auto 10px auto;">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.5px;">AI ASSISTANT CHAT</div>
+              </div>
+            </div>
+            <img src="assets/chat-preview.png" alt="Ask AI Assistant" class="preview-image" id="preview-img-chat" onerror="this.style.display='none'">
+          </div>
+          <div class="preview-body">
+            <h3 class="preview-title">Ask AI Assistant</h3>
+            <p class="preview-desc">Chat naturally with your uploaded documents. Ask questions, receive contextual answers, and explore information instantly using Google Gemini.</p>
+            <button class="btn-preview" id="view-chat-btn">View Chat</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="preview-card">
+          <div class="browser-mockup">
+            <span class="browser-dot red"></span>
+            <span class="browser-dot yellow"></span>
+            <span class="browser-dot green"></span>
+            <div class="browser-address"></div>
+          </div>
+          <div class="preview-image-container">
+            <div class="preview-placeholder-svg">
+              <div style="text-align: center;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 50px; height: 50px; margin: 0 auto 10px auto;">
+                  <line x1="21" y1="6" x2="3" y2="6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="21" y1="12" x2="9" y2="12" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3 12h3M3 18h2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.5px;">SUMMARIZER ENGINE</div>
+              </div>
+            </div>
+            <img src="assets/summary-preview.png" alt="AI Summary" class="preview-image" id="preview-img-summary" onerror="this.style.display='none'">
+          </div>
+          <div class="preview-body">
+            <h3 class="preview-title">AI Summary</h3>
+            <p class="preview-desc">Generate structured summaries, extract key concepts, identify important topics, and download professional PDF reports.</p>
+            <button class="btn-preview" id="view-summary-btn">View Summary</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 4: WHY CHOOSE DOCMIND AI
+       ========================================== -->
+  <section id="why-choose" class="why-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Value Proposition</span>
+        <h2 class="section-title">Why Choose DocMind AI?</h2>
+        <p class="section-desc">We combine raw model capability with optimized UX/UI layout workflows to grant you cognitive speed.</p>
+      </div>
+
+      <div class="why-grid">
+        <!-- Card 1 -->
+        <div class="why-card">
+          <div class="why-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Fast Understanding</h3>
+          <p class="why-desc">Save hours of manual reading. Parse huge multi-page documents and isolate answers instantly.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="why-card">
+          <div class="why-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+              <path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5L12 2z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="why-title">AI Powered</h3>
+          <p class="why-desc">Deeply integrated with state-of-the-art Google Gemini models for intelligent contextual inference.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="why-card">
+          <div class="why-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+              <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 12h-4M4 12H2M12 2v4M12 18v4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Accurate Results</h3>
+          <p class="why-desc">Strictly grounded in your uploaded files to minimize model hallucinations and ensure correct metrics.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="why-card">
+          <div class="why-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 17V9l7 8V9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="why-title">Simple Interface</h3>
+          <p class="why-desc">Minimalist, polished, and straightforward. Spend zero time onboarding and dive straight into insights.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 5: AI CAPABILITIES
+       ========================================== -->
+  <section id="capabilities" class="capabilities-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Feature Grid</span>
+        <h2 class="section-title">Built with Comprehensive AI Power</h2>
+        <p class="section-desc">An extensive array of intelligent tools structured to elevate your documents.</p>
+      </div>
+
+      <div class="capabilities-grid">
+        <!-- Cap 1 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">QA Engine</span>
+        </div>
+
+        <!-- Cap 2 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">Summarization</span>
+        </div>
+
+        <!-- Cap 3 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">Concept Explainer</span>
+        </div>
+
+        <!-- Cap 4 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">Keywords</span>
+        </div>
+
+        <!-- Cap 5 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">Quiz Generator</span>
+        </div>
+
+        <!-- Cap 6 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">Study Notes</span>
+        </div>
+
+        <!-- Cap 7 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">Key Topics</span>
+        </div>
+
+        <!-- Cap 8 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">Action Items</span>
+        </div>
+
+        <!-- Cap 9 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">Document Search</span>
+        </div>
+
+        <!-- Cap 10 -->
+        <div class="capability-item">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 18px; height: 18px;">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="capability-text">Export PDFs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 6: USE CASES
+       ========================================== -->
+  <section id="use-cases" class="usecase-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Workflows</span>
+        <h2 class="section-title">Tailored for Every Workflow</h2>
+        <p class="section-desc">DocMind AI adapts perfectly to different workloads to simplify text digestion.</p>
+      </div>
+
+      <div class="usecase-grid">
+        <!-- Student -->
+        <div class="usecase-card">
+          <span class="usecase-tag">Education</span>
+          <h3 class="usecase-title">Students</h3>
+          <p class="usecase-desc">Study smarter using AI summaries, customized key-term checklists, and instant multiple-choice quizzes generated directly from your lectures and textbooks.</p>
+        </div>
+
+        <!-- Researchers -->
+        <div class="usecase-card">
+          <span class="usecase-tag">Academic</span>
+          <h3 class="usecase-title">Researchers</h3>
+          <p class="usecase-desc">Deconstruct thick academic whitepapers, math frameworks, and clinical research documents quickly. Isolate metrics and cross-referencing lines in seconds.</p>
+        </div>
+
+        <!-- Professionals -->
+        <div class="usecase-card">
+          <span class="usecase-tag">Corporate</span>
+          <h3 class="usecase-title">Professionals</h3>
+          <p class="usecase-desc">Navigate long-form corporate policies, market reports, legal contracts, and financial quarterly tables without getting lost in word counts.</p>
+        </div>
+
+        <!-- Teachers -->
+        <div class="usecase-card">
+          <span class="usecase-tag">Pedagogy</span>
+          <h3 class="usecase-title">Teachers</h3>
+          <p class="usecase-desc">Instantly convert teaching modules, textbook chapters, or literature books into interactive curriculum quizzes, key concepts sheets, and notes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 7: TESTIMONIALS
+       ========================================== -->
+  <section id="testimonials" class="testimonials-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Testimonials</span>
+        <h2 class="section-title">Loved by Curious Minds</h2>
+        <p class="section-desc">Here is what students, academics, and professionals say about using DocMind AI.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <!-- Card 1 -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <!-- 5 stars -->
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-review">"DocMind AI saved me at least 15 hours of manual skimming while studying for my medical biology finals. The Quiz Generator formulated questions directly on the cell cycles, testing my recall flawlessly!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div class="testimonial-meta">
+              <span class="testimonial-name">Sarah Jenkins</span>
+              <span class="testimonial-role">Medical Student</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-review">"As a machine learning researcher, digesting 50-page deep-learning whitepapers can be taxing. The Gemini-powered summary and conceptual explainer outline calculations with stunning precision."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">R</div>
+            <div class="testimonial-meta">
+              <span class="testimonial-name">Dr. Rajesh Patel</span>
+              <span class="testimonial-role">AI Research Lead</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-review">"Parsing multi-year corporate regulatory filings became extremely straightforward. Being able to ask questions naturally and receive structured tables of stats saved our advisory team weeks."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div class="testimonial-meta">
+              <span class="testimonial-name">Marcus Aureli</span>
+              <span class="testimonial-role">Financial Consultant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 8: FAQ ACCORDION
+       ========================================== -->
+  <section id="faq" class="faq-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">Help Desk</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-desc">Got questions about DocMind AI? Here are standard answers explaining how it works.</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-list">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-q-text">What file formats are supported?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                DocMind AI supports standard formats including PDF, DOCX, and TXT files, making it easy to process textbooks, research papers, and company documents.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-q-text">How does Gemini answer questions?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Google Gemini reads and analyzes the uploaded documents, extracting contextual information and combining it with state-of-the-art reasoning to provide highly accurate, contextual answers.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-q-text">Is my document secure?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes, your documents are processed securely. Your data is protected, never used to train public models, and is accessible only within your authenticated session.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-q-text">Can I download summaries?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Absolutely! Once Gemini generates a comprehensive summary, you can instantly export and download it as a professionally formatted PDF report.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-q-text">Does it work for research papers?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes, DocMind AI is highly optimized for complex texts, technical whitepapers, and academic research papers, easily breaking down advanced jargon.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-q-text">Can I generate quizzes from any PDF?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes! You can generate interactive quizzes from any uploaded document. The AI analyzes the text, generates relevant multiple-choice questions, and scores your answers instantly.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 9: CALL TO ACTION
+       ========================================== -->
+  <section id="contact" class="cta-new-section reveal-on-scroll">
+    <div class="container">
+      <div class="cta-new-box">
+        <h2 class="cta-new-heading">Ready to transform the way you interact with documents?</h2>
+        <p class="cta-new-desc">Upload your first document and experience AI-powered document intelligence. No friction, zero cognitive load.</p>
+        <button class="btn btn-primary" id="get-started-cta-btn" style="padding: 14px 32px; font-size: 16px;">Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer-new">
+    <div class="container">
+      <div class="footer-new-grid">
+        <!-- Brand Info -->
+        <div class="footer-new-brand">
+          <a href="#home" class="footer-new-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="logo-icon-footer" style="width: 24px; height: 24px;">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="14 2 14 8 20 8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 13h4M8 17h6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="footer-new-logo-text">DocMind AI</span>
+          </a>
+          <p class="footer-new-tagline">Your Personal AI Document Assistant. Powered by Google Gemini API.</p>
+        </div>
+
+        <!-- Links column -->
+        <div class="footer-new-links-col">
+          <h4 class="footer-new-links-title">Quick Links</h4>
+          <nav class="footer-new-links">
+            <a href="#about" class="footer-new-link">About</a>
+            <a href="#features" class="footer-new-link">Features</a>
+            <a href="#technology" class="footer-new-link">Product Preview</a>
+            <a href="#faq" class="footer-new-link">FAQ</a>
+          </nav>
+        </div>
+
+        <!-- Links column 2 -->
+        <div class="footer-new-links-col">
+          <h4 class="footer-new-links-title">Legal & Contact</h4>
+          <nav class="footer-new-links">
+            <a href="/login.html" class="footer-new-link">Sign In / Register</a>
+            <a href="#" class="footer-new-link">Privacy Policy</a>
+            <a href="#" class="footer-new-link">Terms of Service</a>
+            <a href="mailto:support@docmind.ai" class="footer-new-link">Contact Support</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-new-bottom">
+        <p>&copy; 2026 DocMind AI. All rights reserved. Powered securely by Google Gemini.</p>
+        <div class="footer-new-socials">
+          <!-- Twitter/X -->
+          <a href="#" class="footer-new-social-icon" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">
+              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="footer-new-social-icon" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <!-- GitHub -->
+          <a href="#" class="footer-new-social-icon" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Highly Interactive High-Fidelity Mock Sandbox Demo Modal -->
+  <div class="demo-modal" id="demo-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-window">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-header-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="modal-logo-icon">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="14 2 14 8 20 8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>DocMind AI - Interactive Sandbox Demo</span>
+        </div>
+        <button class="modal-close" id="modal-close-btn" aria-label="Close Demo Modal">&times;</button>
+      </div>
+
+      <!-- Modal Workspace Grid -->
+      <div class="modal-body-grid">
+        
+        <!-- Sidebar: List of Files -->
+        <div class="modal-sidebar">
+          <div class="sidebar-title">Documents</div>
+          <div class="file-list">
+            <div class="file-item active" data-file="syllabus">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="file-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <div class="file-meta">
+                <span class="file-name">syllabus.pdf</span>
+                <span class="file-size">142 KB</span>
+              </div>
+            </div>
+            <div class="file-item" data-file="research">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="file-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <div class="file-meta">
+                <span class="file-name">deep-learning-paper.docx</span>
+                <span class="file-size">1.8 MB</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sidebar-help">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="help-icon"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+            <p>Select a document above to load its sandbox context.</p>
+          </div>
+        </div>
+
+        <!-- Center View: Interactive Chat and Tabs -->
+        <div class="modal-main-view">
+          <div class="view-tabs">
+            <button class="view-tab-btn active" id="tab-chat">Ask AI</button>
+            <button class="view-tab-btn" id="tab-quiz">Quiz Room</button>
+            <button class="view-tab-btn" id="tab-summary">Summary</button>
+          </div>
+
+          <!-- Chat Sub-view -->
+          <div class="tab-pane active" id="pane-chat">
+            <div class="chat-history" id="chat-history">
+              <!-- Initial Welcome Message (Dynamic depending on active document) -->
+              <div class="message system-msg">
+                <div class="msg-avatar">AI</div>
+                <div class="msg-content">
+                  <p class="dynamic-welcome">Hi there! I have analyzed <strong>syllabus.pdf</strong> completely. What would you like to know? Here are a few sample queries you can click on:</p>
+                  <div class="suggested-queries" id="suggested-queries">
+                    <button class="query-chip">When is the midterm exam?</button>
+                    <button class="query-chip">What is the attendance policy?</button>
+                    <button class="query-chip">List the course prerequisites.</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Chat Input form -->
+            <form class="chat-input-container" id="chat-form">
+              <input type="text" placeholder="Type your question about this document..." id="chat-input" autocomplete="off">
+              <button type="submit" class="chat-send-btn" aria-label="Send Message">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="send-icon">
+                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Quiz Sub-view -->
+          <div class="tab-pane" id="pane-quiz">
+            <div class="quiz-container">
+              <div class="quiz-header">
+                <div class="quiz-meta">
+                  <span class="quiz-doc-title" id="quiz-doc-title">syllabus.pdf</span> &bull; <span>3 Questions</span>
+                </div>
+                <div class="quiz-score" id="quiz-score-display" style="display: none;">Score: <span id="quiz-score-val">0</span>/3</div>
+              </div>
+
+              <!-- Question cards container -->
+              <div class="quiz-content" id="quiz-questions-wrapper">
+                <!-- Injected dynamically via script.js -->
+              </div>
+
+              <div class="quiz-footer">
+                <button class="btn btn-primary" id="btn-reset-quiz">Reset Quiz</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary Sub-view -->
+          <div class="tab-pane" id="pane-summary">
+            <div class="summary-container" id="summary-content-wrapper">
+              <!-- Injected dynamically via script.js -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Entrypoint -->
+  <script src="./script.js"></script>
+</body>
+</html>

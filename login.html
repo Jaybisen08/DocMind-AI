@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    // Suppress benign WebSocket/HMR connection errors from showing up as unhandled rejection popups
+    window.addEventListener('unhandledrejection', (event) => {
+      const reason = event.reason;
+      if (reason && (
+        (reason.message && /websocket|ws|vite|hmr/i.test(reason.message)) ||
+        (reason.stack && /websocket|ws|vite|hmr/i.test(reason.stack))
+      )) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+    window.addEventListener('error', (event) => {
+      if (event.message && /websocket|ws|vite|hmr/i.test(event.message)) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    }, true);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocMind AI - Welcome Back</title>
+  
+  <!-- Fonts: Inter and Poppins for complete design consistency -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="login.css">
+</head>
+<body class="login-body">
+
+  <main class="login-wrapper" id="login-container">
+    <div class="login-card" id="login-card">
+      
+      <!-- Logo section -->
+      <header class="login-header">
+        <div class="logo-text">DocMind AI</div>
+        <h1 class="login-title">Welcome Back</h1>
+        <p class="login-subtitle">Sign in to continue to your AI Document Assistant.</p>
+      </header>
+
+      <!-- Main Login Form -->
+      <form id="login-form" novalidate>
+        
+        <!-- Validation Error Message Alert Container -->
+        <div class="error-alert" id="error-alert" role="alert" aria-live="assertive" style="display: none;"></div>
+
+        <!-- Email Field -->
+        <div class="input-group">
+          <label for="email" class="input-label">Email Address</label>
+          <div class="input-control-wrapper">
+            <input 
+              type="email" 
+              id="email" 
+              class="input-control" 
+              placeholder="name@example.com" 
+              required
+              autocomplete="email"
+            >
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="input-group">
+          <label for="password" class="input-label">Password</label>
+          <div class="input-control-wrapper">
+            <input 
+              type="password" 
+              id="password" 
+              class="input-control" 
+              placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" 
+              required
+              autocomplete="current-password"
+            >
+          </div>
+        </div>
+
+        <!-- Remember Me Checkbox -->
+        <div class="remember-me-group">
+          <label class="checkbox-container" for="remember-me">
+            <input type="checkbox" id="remember-me">
+            <span class="checkmark"></span>
+            Remember Me
+          </label>
+        </div>
+
+        <!-- Submit Buttons -->
+        <div class="button-group">
+          <button type="submit" class="btn-primary" id="btn-login">Login</button>
+          <a href="#" class="guest-link" id="btn-guest">Continue as Guest</a>
+        </div>
+
+      </form>
+      
+    </div>
+  </main>
+
+  <!-- Javascript Logic -->
+  <script src="login.js"></script>
+</body>
+</html>
