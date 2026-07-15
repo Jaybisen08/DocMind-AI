@@ -1,7 +1,10 @@
-// @ts-ignore
-import pdf from "pdf-parse";
+import { createRequire } from "module";
 import { getGeminiClient } from "./gemini";
 import { Type } from "@google/genai";
+
+const require = createRequire(import.meta.url);
+// @ts-ignore
+const pdf = require("pdf-parse");
 
 export interface ParsedPdf {
   text: string;

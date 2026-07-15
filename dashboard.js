@@ -681,12 +681,22 @@ document.addEventListener('DOMContentLoaded', () => {
           })
         });
 
-        if (!response.ok) {
-          const errData = await response.json();
-          throw new Error(errData.error || 'Failed to parse file');
+        let data;
+        try {
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            data = await response.json();
+          } else {
+            const txt = await response.text();
+            throw new Error(txt || 'Failed to parse file');
+          }
+        } catch (e) {
+          throw new Error('Failed to parse file: ' + e.message);
         }
 
-        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data && data.error ? data.error : 'Failed to parse file');
+        }
         const keyName = data.id;
 
         documents[keyName] = {
@@ -891,12 +901,22 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       });
 
-      if (!response.ok) {
-        const errData = await response.json();
-        throw new Error(errData.error || 'Failed to generate AI response');
+      let data;
+      try {
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          data = await response.json();
+        } else {
+          const txt = await response.text();
+          throw new Error(txt || 'Failed to generate AI response');
+        }
+      } catch (e) {
+        throw new Error('Failed to generate AI response: ' + e.message);
       }
 
-      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data && data.error ? data.error : 'Failed to generate AI response');
+      }
       
       let responseBody = `
         <div class="ai-chat-response">
@@ -1664,12 +1684,22 @@ document.addEventListener('DOMContentLoaded', () => {
           })
         });
 
-        if (!response.ok) {
-          const errData = await response.json();
-          throw new Error(errData.error || 'Failed to generate summary');
+        let data;
+        try {
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            data = await response.json();
+          } else {
+            const txt = await response.text();
+            throw new Error(txt || 'Failed to generate summary');
+          }
+        } catch (e) {
+          throw new Error('Failed to generate summary: ' + e.message);
         }
 
-        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data && data.error ? data.error : 'Failed to generate summary');
+        }
         
         // Save back to documents state so that Copy, PDF, and Print have access to it!
         docData.summary[type] = data[type] || data.detailed;
@@ -1876,12 +1906,22 @@ document.addEventListener('DOMContentLoaded', () => {
           })
         });
 
-        if (!response.ok) {
-          const errData = await response.json();
-          throw new Error(errData.error || 'Failed to generate insights');
+        let data;
+        try {
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            data = await response.json();
+          } else {
+            const txt = await response.text();
+            throw new Error(txt || 'Failed to generate insights');
+          }
+        } catch (e) {
+          throw new Error('Failed to generate insights: ' + e.message);
         }
 
-        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data && data.error ? data.error : 'Failed to generate insights');
+        }
         
         insightsContainer.innerHTML = '';
 
@@ -1983,12 +2023,22 @@ document.addEventListener('DOMContentLoaded', () => {
           })
         });
 
-        if (!response.ok) {
-          const errData = await response.json();
-          throw new Error(errData.error || 'Failed to generate quiz');
+        let data;
+        try {
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            data = await response.json();
+          } else {
+            const txt = await response.text();
+            throw new Error(txt || 'Failed to generate quiz');
+          }
+        } catch (e) {
+          throw new Error('Failed to generate quiz: ' + e.message);
         }
 
-        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data && data.error ? data.error : 'Failed to generate quiz');
+        }
         
         // Save the questions to our local state so answer click handlers can access them
         docData.quiz = data.quiz;
@@ -2241,11 +2291,22 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ query })
       });
 
-      if (!response.ok) {
-        throw new Error('Search request failed');
+      let data;
+      try {
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          data = await response.json();
+        } else {
+          const txt = await response.text();
+          throw new Error(txt || 'Search request failed');
+        }
+      } catch (e) {
+        throw new Error('Search request failed: ' + e.message);
       }
 
-      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data && data.error ? data.error : 'Search request failed');
+      }
       const contentContainer = document.getElementById('search-modal-content');
 
       if (!data.found) {

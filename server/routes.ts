@@ -140,7 +140,7 @@ apiRouter.post("/upload", async (req: Request, res: Response): Promise<void> => 
     const { fileName, fileSize, fileBase64 } = req.body;
 
     if (!fileName || !fileBase64) {
-      res.status(400).json({ error: "fileName and fileBase64 are required fields." });
+      res.status(400).json({ success: false, error: "fileName and fileBase64 are required fields." });
       return;
     }
 
@@ -205,7 +205,7 @@ apiRouter.post("/upload", async (req: Request, res: Response): Promise<void> => 
     });
   } catch (error: any) {
     console.error("Upload handler failed:", error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ success: false, error: error.message || "An error occurred during file upload." });
   }
 });
 
@@ -215,13 +215,13 @@ apiRouter.post("/chat", async (req: Request, res: Response): Promise<void> => {
     const { docId, message, chatHistory } = req.body;
 
     if (!docId || !message) {
-      res.status(400).json({ error: "docId and message are required fields." });
+      res.status(400).json({ success: false, error: "docId and message are required fields." });
       return;
     }
 
     const doc = documentCache.get(docId);
     if (!doc) {
-      res.status(404).json({ error: "Document not found or expired. Please upload it again." });
+      res.status(404).json({ success: false, error: "Document not found or expired. Please upload it again." });
       return;
     }
 
@@ -230,7 +230,7 @@ apiRouter.post("/chat", async (req: Request, res: Response): Promise<void> => {
     res.json(chatResponse);
   } catch (error: any) {
     console.error("Chat handler failed:", error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ success: false, error: error.message || "An error occurred during chat." });
   }
 });
 
@@ -240,13 +240,13 @@ apiRouter.post("/summary", async (req: Request, res: Response): Promise<void> =>
     const { docId, summaryType } = req.body;
 
     if (!docId) {
-      res.status(400).json({ error: "docId is required." });
+      res.status(400).json({ success: false, error: "docId is required." });
       return;
     }
 
     const doc = documentCache.get(docId);
     if (!doc) {
-      res.status(404).json({ error: "Document not found or expired. Please upload it again." });
+      res.status(404).json({ success: false, error: "Document not found or expired. Please upload it again." });
       return;
     }
 
@@ -255,7 +255,7 @@ apiRouter.post("/summary", async (req: Request, res: Response): Promise<void> =>
     res.json(summaryResult);
   } catch (error: any) {
     console.error("Summary handler failed:", error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ success: false, error: error.message || "An error occurred during summary generation." });
   }
 });
 
@@ -265,13 +265,13 @@ apiRouter.post("/insights", async (req: Request, res: Response): Promise<void> =
     const { docId } = req.body;
 
     if (!docId) {
-      res.status(400).json({ error: "docId is required." });
+      res.status(400).json({ success: false, error: "docId is required." });
       return;
     }
 
     const doc = documentCache.get(docId);
     if (!doc) {
-      res.status(404).json({ error: "Document not found or expired. Please upload it again." });
+      res.status(404).json({ success: false, error: "Document not found or expired. Please upload it again." });
       return;
     }
 
@@ -280,7 +280,7 @@ apiRouter.post("/insights", async (req: Request, res: Response): Promise<void> =
     res.json(insightsResult);
   } catch (error: any) {
     console.error("Insights handler failed:", error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ success: false, error: error.message || "An error occurred during insights generation." });
   }
 });
 
@@ -290,13 +290,13 @@ apiRouter.post("/quiz", async (req: Request, res: Response): Promise<void> => {
     const { docId, difficulty, count } = req.body;
 
     if (!docId) {
-      res.status(400).json({ error: "docId is required." });
+      res.status(400).json({ success: false, error: "docId is required." });
       return;
     }
 
     const doc = documentCache.get(docId);
     if (!doc) {
-      res.status(404).json({ error: "Document not found or expired. Please upload it again." });
+      res.status(404).json({ success: false, error: "Document not found or expired. Please upload it again." });
       return;
     }
 
@@ -308,7 +308,7 @@ apiRouter.post("/quiz", async (req: Request, res: Response): Promise<void> => {
     res.json({ quiz: quizResult });
   } catch (error: any) {
     console.error("Quiz handler failed:", error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ success: false, error: error.message || "An error occurred during quiz generation." });
   }
 });
 
@@ -318,7 +318,7 @@ apiRouter.post("/search", async (req: Request, res: Response): Promise<void> => 
     const { query } = req.body;
 
     if (!query) {
-      res.status(400).json({ error: "query is required." });
+      res.status(400).json({ success: false, error: "query is required." });
       return;
     }
 
@@ -333,6 +333,6 @@ apiRouter.post("/search", async (req: Request, res: Response): Promise<void> => 
     res.json(searchResult);
   } catch (error: any) {
     console.error("Search handler failed:", error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ success: false, error: error.message || "An error occurred during search." });
   }
 });
