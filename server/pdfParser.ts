@@ -1,9 +1,7 @@
-import { createRequire } from "module";
+// @ts-ignore
+import pdf from "pdf-parse";
 import { getGeminiClient } from "./gemini";
 import { Type } from "@google/genai";
-
-const require = createRequire(import.meta.url);
-const pdfModule = require("pdf-parse");
 
 export interface ParsedPdf {
   text: string;
@@ -13,19 +11,13 @@ export interface ParsedPdf {
 export async function extractTextFromPdf(buffer: Buffer): Promise<ParsedPdf> {
   try {
     console.log("Attempting local PDF text extraction via pdf-parse...");
-    const { PDFParse } = pdfModule;
-    if (!PDFParse) {
-      throw new Error("PDFParse class not found in pdf-parse module.");
-    }
-
-    const parser = new PDFParse({ data: buffer });
-    const result = await parser.getText();
+    const result = await pdf(buffer);
     
     if (result && typeof result.text === "string" && result.text.trim().length > 0) {
       console.log(`Local PDF parsing successful. Extracted ${result.text.length} characters.`);
       return {
         text: result.text,
-        numPages: typeof result.total === "number" ? result.total : 1,
+        numPages: typeof result.numpages === "number" ? result.numpages : 1,
       };
     }
     throw new Error("Local parser returned empty text.");
