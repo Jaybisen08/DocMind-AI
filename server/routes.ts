@@ -5,6 +5,13 @@ import { generateInsights } from "./services/insightsService";
 import { generateQuiz } from "./services/quizService";
 import { generateChatResponse } from "./services/chatService";
 import { searchAcrossDocuments } from "./services/searchService";
+import multer from "multer";
+
+const storage = multer.memoryStorage();
+const upload = multer({
+  storage,
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB limit
+});
 
 export const apiRouter = Router();
 
@@ -135,17 +142,35 @@ function getFormattedDate(): string {
 }
 
 // 1. PDF UPLOAD ENDPOINT
-apiRouter.post("/upload", async (req: Request, res: Response): Promise<void> => {
+apiRouter.post("/upload", upload.single("file"), async (req: Request, res: Response): Promise<void> => {
   try {
-    const { fileName, fileSize, fileBase64 } = req.body;
+    let fileName: string | undefined;
+    let fileSize: string | undefined;
+    let buffer: Buffer | undefined;
 
-    if (!fileName || !fileBase64) {
-      res.status(400).json({ success: false, error: "fileName and fileBase64 are required fields." });
-      return;
+    if (req.file) {
+      fileName = req.file.originalname;
+      const sizeBytes = req.file.size;
+      fileSize = sizeBytes > 1024 * 1024
+        ? (sizeBytes / (1024 * 1024)).toFixed(1) + " MB"
+        : (sizeBytes / 1024).toFixed(0) + " KB";
+      buffer = req.file.buffer;
+    } else if (req.body) {
+      const { fileName: jsonFileName, fileSize: jsonFileSize, fileBase64 } = req.body;
+      fileName = jsonFileName;
+      fileSize = jsonFileSize;
+      if (fileBase64) {
+        buffer = Buffer.from(fileBase64, "base64");
+      }
     }
 
-    // Convert Base64 to Buffer
-    const buffer = Buffer.from(fileBase64, "base64");
+    if (!fileName || !buffer) {
+      res.status(400).json({
+        success: false,
+        error: "No file was uploaded. Please provide either a multipart 'file' field or 'fileName' and 'fileBase64' JSON fields."
+      });
+      return;
+    }
 
     // Extract Text and Pages
     console.log(`Extracting text from uploaded PDF: ${fileName} (${fileSize || "unknown size"})`);

@@ -1,5 +1,10 @@
 {
+  "version": 2,
+  "cleanUrls": true,
   "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index" }
+  ]
 }

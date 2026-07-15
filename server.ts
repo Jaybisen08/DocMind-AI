@@ -46,7 +46,19 @@ async function startServer() {
   } else {
     console.log("Starting server in production mode...");
     const distPath = path.join(process.cwd(), "dist");
+    
+    // Serve static files (like dashboard.html directly, styles, etc.)
     app.use(express.static(distPath));
+    
+    // Support clean, extension-less paths for main application pages
+    app.get("/login", (req, res) => {
+      res.sendFile(path.join(distPath, "login.html"));
+    });
+    
+    app.get("/dashboard", (req, res) => {
+      res.sendFile(path.join(distPath, "dashboard.html"));
+    });
+
     app.get("*", (req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
